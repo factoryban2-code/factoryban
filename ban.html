@@ -56,6 +56,10 @@
         .tab-btn.active { background: #Facc15; color: black; border-color: #Facc15; }
         .search-tab-content { display: none; }
         .search-tab-content.active { display: block; }
+        
+        /* Tambahan CSS untuk Filter */
+        .filter-btn { transition: all 0.3s ease; }
+        .filter-btn.active { background: #Facc15; color: black; border-color: #Facc15; }
     </style>
 </head>
 <body class="bg-black text-white">
@@ -82,26 +86,35 @@
         
         <!-- TAMPILAN 1: PILIH MERK -->
         <div id="view-brands" class="view-section active">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-                <div class="model-card" onclick="showBrand('dunlop')">
-                    <div class="text-6xl mb-4">🛞</div>
-                    <h2 class="text-2xl font-bold uppercase text-white mb-2">DUNLOP</h2>
-                    <span class="bg-yellow-400 text-black px-3 py-1 rounded-full text-xs font-bold uppercase">Authorized Dealer</span>
+                                                                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto">
+                <!-- DUNLOP -->
+                <div class="flex flex-col items-center cursor-pointer group" onclick="showBrand('dunlop')">
+                    <!-- KOTAK LOGO (Ukuran 160x160px / h-40 w-40) -->
+                    <div class="w-40 h-40 border border-gray-700 rounded-2xl overflow-hidden bg-[#111827] mb-3 group-hover:border-yellow-400 transition-all">
+                        <img src="logo-dunlop.png" alt="Dunlop" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                    </div>
+                    <span class="bg-yellow-400 text-black px-3 py-1 rounded-full text-[10px] font-bold uppercase">Authorized Dealer</span>
                 </div>
-                <div class="model-card" onclick="showBrand('falken')">
-                    <div class="text-6xl mb-4">🛞</div>
-                    <h2 class="text-2xl font-bold uppercase text-white mb-2">FALKEN</h2>
-                    <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full text-xs font-bold uppercase">Tersedia</span>
+                
+                <!-- FALKEN -->
+                <div class="flex flex-col items-center cursor-pointer group" onclick="showBrand('falken')">
+                    <div class="w-40 h-40 border border-gray-700 rounded-2xl overflow-hidden bg-[#111827] mb-3 group-hover:border-yellow-400 transition-all">
+                        <img src="logo-falken.png" alt="Falken" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                    </div>
                 </div>
-                <div class="model-card" onclick="showBrand('bridgestone')">
-                    <div class="text-6xl mb-4">🛞</div>
-                    <h2 class="text-2xl font-bold uppercase text-white mb-2">BRIDGESTONE</h2>
-                    <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full text-xs font-bold uppercase">Tersedia</span>
+                
+                <!-- BRIDGESTONE -->
+                <div class="flex flex-col items-center cursor-pointer group" onclick="showBrand('bridgestone')">
+                    <div class="w-40 h-40 border border-gray-700 rounded-2xl overflow-hidden bg-[#111827] mb-3 group-hover:border-yellow-400 transition-all">
+                        <img src="logo-bridgestone.png" alt="Bridgestone" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                    </div>
                 </div>
-                <div class="model-card" onclick="showBrand('michelin')">
-                    <div class="text-6xl mb-4">🛞</div>
-                    <h2 class="text-2xl font-bold uppercase text-white mb-2">MICHELIN</h2>
-                    <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full text-xs font-bold uppercase">Tersedia</span>
+                
+                <!-- MICHELIN -->
+                <div class="flex flex-col items-center cursor-pointer group" onclick="showBrand('michelin')">
+                    <div class="w-40 h-40 border border-gray-700 rounded-2xl overflow-hidden bg-[#111827] mb-3 group-hover:border-yellow-400 transition-all">
+                        <img src="logo-michelin.png" alt="Michelin" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                    </div>
                 </div>
             </div>
 
@@ -131,7 +144,7 @@
                             </tr>
                             <tr class="border-b border-gray-700 align-top bg-yellow-400/5">
                                 <td class="p-3 font-bold text-yellow-400">Dunlop Blue Responses TG</td>
-                                <td class="p-3 font-bold text-white whitespace-nowrap">1 Th / 24rb km</td>
+                                <td class="p-3 font-bold text-white whitespace-nowrap">1 Tahun / 24.000 Kilo Meter</td>
                                 <td class="p-3">
                                     <p class="mb-2">Garansi mencakup penggantian ban apabila terjadi kerusakan akibat:</p>
                                     <ul class="list-disc list-inside text-gray-400 space-y-1">
@@ -169,14 +182,66 @@
                     <button class="tab-btn active bg-gray-800 text-white border border-gray-700 px-6 py-2 rounded-full font-bold text-sm uppercase transition" onclick="switchTab('ukuran', this)">Berdasarkan Ukuran</button>
                     <button class="tab-btn bg-gray-800 text-white border border-gray-700 px-6 py-2 rounded-full font-bold text-sm uppercase transition" onclick="switchTab('oem', this)">Berdasarkan Mobil (OEM)</button>
                 </div>
+                
+                <!-- TAB UKURAN (Urutan Baru: Pelek -> Lebar -> Profil) -->
                 <div id="tab-ukuran" class="search-tab-content active">
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
-                        <div><label class="block text-xs text-gray-400 mb-1 uppercase font-bold">Lebar Ban</label><select id="width" class="w-full bg-black border border-gray-600 rounded-lg px-4 py-3 text-white outline-none focus:border-yellow-400"><option value="">Pilih Lebar</option><option value="155">155</option><option value="165">165</option><option value="175">175</option><option value="185">185</option><option value="195">195</option><option value="205">205</option><option value="215">215</option><option value="225">225</option><option value="235">235</option><option value="245">245</option><option value="255">255</option><option value="265">265</option><option value="285">285</option><option value="30X9.50">30X9.50</option><option value="31X10.50">31X10.50</option></select></div>
-                        <div><label class="block text-xs text-gray-400 mb-1 uppercase font-bold">Profle</label><select id="profile" class="w-full bg-black border border-gray-600 rounded-lg px-4 py-3 text-white outline-none focus:border-yellow-400"><option value="">Pilih Profil</option><option value="-">-</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option><option value="60">60</option><option value="65">65</option><option value="70">70</option><option value="75">75</option><option value="80">80</option></select></div>
-                        <div><label class="block text-xs text-gray-400 mb-1 uppercase font-bold">Diameter Pelek</label><select id="rim" class="w-full bg-black border border-gray-600 rounded-lg px-4 py-3 text-white outline-none focus:border-yellow-400"><option value="">Pilih Pelek</option><option value="12">R12</option><option value="13">R13</option><option value="14">R14</option><option value="15">R15</option><option value="16">R16</option><option value="17">R17</option><option value="18">R18</option><option value="19">R19</option></select></div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1 uppercase font-bold">Ukuran Pelek</label>
+                            <select id="rim" class="w-full bg-black border border-gray-600 rounded-lg px-4 py-3 text-white outline-none focus:border-yellow-400">
+                                <option value="">Pilih Pelek</option>
+                                <option value="12">12 Inch</option>
+                                <option value="13">13 Inch</option>
+                                <option value="14">14 Inch</option>
+                                <option value="15">15 Inch</option>
+                                <option value="16">16 Inch</option>
+                                <option value="17">17 Inch</option>
+                                <option value="18">18 Inch</option>
+                                <option value="19">19 Inch</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1 uppercase font-bold">Lebar Ban</label>
+                            <select id="width" class="w-full bg-black border border-gray-600 rounded-lg px-4 py-3 text-white outline-none focus:border-yellow-400">
+                                <option value="">Pilih Lebar</option>
+                                <option value="155">155</option>
+                                <option value="165">165</option>
+                                <option value="175">175</option>
+                                <option value="185">185</option>
+                                <option value="195">195</option>
+                                <option value="205">205</option>
+                                <option value="215">215</option>
+                                <option value="225">225</option>
+                                <option value="235">235</option>
+                                <option value="245">245</option>
+                                <option value="255">255</option>
+                                <option value="265">265</option>
+                                <option value="285">285</option>
+                                <option value="30X9.50">30X9.50</option>
+                                <option value="31X10.50">31X10.50</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1 uppercase font-bold">Profle</label>
+                            <select id="profile" class="w-full bg-black border border-gray-600 rounded-lg px-4 py-3 text-white outline-none focus:border-yellow-400">
+                                <option value="">Pilih Profil</option>
+                                <option value="-">-</option>
+                                <option value="35">35</option>
+                                <option value="40">40</option>
+                                <option value="45">45</option>
+                                <option value="50">50</option>
+                                <option value="55">55</option>
+                                <option value="60">60</option>
+                                <option value="65">65</option>
+                                <option value="70">70</option>
+                                <option value="75">75</option>
+                                <option value="80">80</option>
+                            </select>
+                        </div>
                         <button onclick="searchTires()" class="bg-yellow-400 text-black py-3 px-6 rounded-lg font-bold uppercase hover:bg-yellow-300 transition w-full">Cari Ban</button>
                     </div>
                 </div>
+
                 <div id="tab-oem" class="search-tab-content">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
                         <div><label class="block text-xs text-gray-400 mb-1 uppercase font-bold">Merk Mobil</label><select id="car-brand" class="w-full bg-black border border-gray-600 rounded-lg px-4 py-3 text-white outline-none focus:border-yellow-400" onchange="updateCarModels()"><option value="">Pilih Merk</option><option value="Toyota">Toyota</option><option value="Honda">Honda</option><option value="Mitsubishi">Mitsubishi</option><option value="Suzuki">Suzuki</option><option value="Daihatsu">Daihatsu</option><option value="Nissan">Nissan</option><option value="Mazda">Mazda</option><option value="Hyundai">Hyundai</option><option value="Kia">Kia</option><option value="Subaru">Subaru</option><option value="BMW">BMW</option><option value="Mercedes-Benz">Mercedes-Benz</option><option value="Ford">Ford</option><option value="Jeep">Jeep</option><option value="Land Rover">Land Rover</option><option value="Chevrolet">Chevrolet</option><option value="Isuzu">Isuzu</option></select></div>
@@ -185,6 +250,13 @@
                     </div>
                 </div>
                 <div id="search-result-info" class="hidden mt-6 text-center bg-yellow-400/10 border border-yellow-400 text-yellow-400 rounded-lg py-3 font-bold uppercase text-sm"></div>
+            </div>
+
+            <!-- TOMBOL FILTER SERI (HANYA MUNCUL DI DUNLOP) -->
+            <div id="series-filter-container" class="max-w-6xl mx-auto mb-8 flex flex-wrap justify-center gap-3" style="display: none;">
+                <button onclick="filterSeries('all')" id="btn-all" class="filter-btn active bg-yellow-400 text-black border border-yellow-400 px-6 py-2 rounded-full font-bold text-sm uppercase transition">Semua Seri</button>
+                <button onclick="filterSeries('enasave')" id="btn-enasave" class="filter-btn bg-gray-800 text-white border border-gray-700 px-6 py-2 rounded-full font-bold text-sm uppercase transition">Enasave Series</button>
+                <button onclick="filterSeries('grandtrek')" id="btn-grandtrek" class="filter-btn bg-gray-800 text-white border border-gray-700 px-6 py-2 rounded-full font-bold text-sm uppercase transition">Grandtrek Series</button>
             </div>
 
             <div id="model-list-container" class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
@@ -211,13 +283,13 @@
                 {
                     name: "Dunlop Enasave EC300+",
                     tag: "Eco Touring",
-                    img: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=500&auto=format&fit=crop",
+                    img: "ec-300.png",
                     desc: "Dunlop Enasave EC300+ adalah ban kategori eco touring yang dikembangkan untuk penggunaan harian dengan fokus pada efisiensi bahan bakar, kenyamanan, dan daya tahan. Ban ini juga merupakan salah satu ban OEM (Original Equipment Manufacturer) yang banyak dipakai oleh pabrikan mobil di Asia, termasuk Indonesia.",
                     specs: [{ label: "Kategori", value: "Eco Touring" }, { label: "Tipe", value: "Radial Tubeless" }, { label: "Penggunaan", value: "Jalan raya (On-Road)" }, { label: "Karakter", value: "Hemat BBM, nyaman, awet" }, { label: "Teknologi", value: "Low Rolling Resistance" }, { label: "Fokus", value: "Efisiensi bahan bakar, kenyamanan, umur pakai" }],
                     pros: ["Hambatan gulir rendah sehingga membantu menghemat konsumsi BBM.", "Suara ban relatif senyap.", "Nyaman untuk penggunaan harian.", "Umur pakai cukup panjang.", "Banyak digunakan sebagai ban bawaan pabrik (OEM)."],
                     cons: ["Grip saat menikung agresif tidak sebaik ban performa.", "Sidewall cenderung lebih mengutamakan kenyamanan daripada respons sporty.", "Untuk pengendaraan agresif lebih cocok menggunakan seri seperti Dunlop Direzza atau SP Sport."],
                     sizes: [
-                        { width: "175", profile: "65", rim: "14", load: "82T", oem: "Toyota Agya,Daihatsu Ayla,Honda Brio Satya,Suzuki Karimun Wagon R", price: "625000" },
+                        
                         { width: "185", profile: "70", rim: "14", load: "88S", oem: "Toyota Avanza,Daihatsu Xenia,Suzuki Ertiga", price: "675000" },
                         { width: "185", profile: "55", rim: "15", load: "82H", oem: "Honda Brio RS,Toyota Agya GR Sport", price: "850000" },
                         { width: "185", profile: "60", rim: "15", load: "84H", oem: "Toyota Yaris,Honda Mobilio,Suzuki Baleno", price: "900000" },
@@ -228,7 +300,7 @@
                         { width: "185", profile: "55", rim: "16", load: "83H", oem: "Honda Jazz RS,Toyota Yaris TRD", price: "975000" },
                         { width: "195", profile: "55", rim: "16", load: "87V", oem: "Honda City,Toyota Yaris", price: "1025000" },
                         { width: "205", profile: "55", rim: "16", load: "91V", oem: "Honda Civic,Nissan Kicks e-Power,Toyota Corolla Altis", price: "1150000" },
-                        { width: "185", profile: "60", rim: "16", load: "86H", oem: "Honda e", price: "0" },
+                        
                         { width: "195", profile: "60", rim: "16", load: "89H", oem: "Citroen e-C3,VinFast VF5", price: "1025000" },
                         { width: "215", profile: "60", rim: "16", load: "95H", oem: "Honda HR-V,Mitsubishi Xpander Cross", price: "1025000" },
                         { width: "195", profile: "65", rim: "16", load: "92H", oem: "Hyundai Creta,Kia Seltos", price: "900000" },
@@ -242,7 +314,7 @@
                 {
                     name: "Dunlop Enasave EC300",
                     tag: "Eco Touring",
-                    img: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=500&auto=format&fit=crop",
+                    img: "ec300new.png",
                     desc: "Dunlop Enasave EC300 175/65 R14 merupakan ban eco touring yang dirancang untuk kendaraan harian dengan fokus pada hemat bahan bakar, kenyamanan, dan daya tahan. Ukuran ini banyak digunakan pada kendaraan city car dan MPV kecil yang membutuhkan ban nyaman serta efisien untuk penggunaan dalam kota.",
                     specs: [
                         { label: "Merek", value: "Dunlop" }, { label: "Model", value: "Enasave EC300" }, { label: "Ukuran", value: "175/65 R14" }, { label: "Lebar Ban", value: "175 mm" }, { label: "Rasio Tinggi", value: "65% dari lebar ban" }, { label: "Diameter Velg", value: "14 inch" }, { label: "Konstruksi", value: "Radial" }, { label: "Kategori", value: "Eco Touring" }, { label: "Penggunaan", value: "Jalan Raya / Harian (On-Road)" }, { label: "Karakter", value: "Nyaman, irit BBM, dan senyap" }, { label: "Cocok Untuk", value: "City Car, Sedan kecil, dan MPV kompak" }
@@ -254,52 +326,44 @@
                 {
                     name: "Dunlop Blue Response TG",
                     tag: "Premium Touring",
-                    img: "https://images.unsplash.com/photo-1602551258130-30b89c4d80d6?q=80&w=500&auto=format&fit=crop",
+                    img: "blu-tg1.png",
                     desc: "Dunlop Blue Response TG adalah ban Smart Premium Touring untuk pengguna yang mencari kenyamanan, ketenangan, stabilitas, keamanan di jalan basah, dan daya tahan panjang. Cocok untuk City car, sedan, MPV, SUV, hingga kendaraan listrik (EV). Merupakan pengganti generasi sebelumnya: Dunlop SP Sport LM705.",
                     specs: [{ label: "Kategori", value: "Smart Premium Touring Tyre" }, { label: "Cocok Untuk", value: "Sedan, City Car, MPV, SUV, EV (Mobil Listrik)" }, { label: "Posisi Produk", value: "Pengganti Dunlop SP Sport LM705" }, { label: "Garansi Tambahan", value: "SmartCare Warranty (1 Th / 24.000 km) - <a href='https://www.dunlop.co.id/id/about-warranty#about-smartcare-warranty' target='_blank' class='text-yellow-400 hover:text-yellow-300 underline text-xs'>Lihat di web Dunlop</a>" }],
                     pros: ["Premium Comfort: Nyaman untuk penggunaan harian, kabin lebih senyap.", "High Performance: Handling lebih stabil, respons kemudi lebih presisi.", "Optimized Wear Life: Daya tahan pemakaian lebih panjang, keausan lebih merata.", "Wet Performance: Pengereman dan grip lebih baik di jalan basah.", "EV Ready: Mampu memenuhi beban kendaraan lebih berat dan torsi instan.", "Touring Profile: Memberikan kestabilan berkendara dan kontrol nyaman.", "Optimized Tread Pattern: Mengurangi suara ban untuk kenyamanan maksimal.", "Water Drainage Groove: Membantu membuang air, meningkatkan keamanan saat hujan."],
                     cons: ["Harga lebih mahal dibandingkan ban kategori Eco Touring.", "Karakter touring, kurang cocok untuk pengendaraan agresif (track day)."],
                     sizes: [
-                        { width: "185", profile: "55", rim: "15", load: "86V XL", oem: "Honda Jazz,Toyota Yaris,Suzuki Swift", price: "0" }, 
-                        { width: "185", profile: "65", rim: "15", load: "88H", oem: "Toyota Vios,Honda City,Suzuki Ertiga", price: "0" }, 
-                        { width: "195", profile: "65", rim: "15", load: "91V", oem: "Toyota Innova,Toyota Corolla Altis", price: "0" }, 
-                        { width: "205", profile: "65", rim: "15", load: "94V", oem: "Toyota Camry,Honda Accord", price: "0" }, 
-                        { width: "205", profile: "70", rim: "15", load: "96H", oem: "Toyota Kijang Innova,Honda CR-V", price: "0" }, 
-                        { width: "215", profile: "70", rim: "15", load: "98H", oem: "Nissan X-Trail,Subaru Forester", price: "0" }, 
-                        { width: "195", profile: "45", rim: "16", load: "84W XL", oem: "Mazda2,Honda City Hatchback", price: "0" }, 
-                        { width: "195", profile: "50", rim: "16", load: "84V", oem: "Mazda2,Honda City Hatchback", price: "0" }, 
-                        { width: "185", profile: "55", rim: "16", load: "83V", oem: "Honda Jazz RS,Toyota Yaris", price: "0" }, 
-                        { width: "195", profile: "55", rim: "16", load: "87V", oem: "Honda City,Toyota Yaris", price: "0" }, 
-                        { width: "205", profile: "55", rim: "16", load: "91V", oem: "Toyota Corolla Altis,Honda Civic,Mazda 3", price: "0" }, 
-                        { width: "195", profile: "60", rim: "16", load: "89H", oem: "Honda Civic,Citroen e-C3", price: "0" }, 
-                        { width: "205", profile: "60", rim: "16", load: "92V", oem: "Honda HR-V,Mitsubishi Xpander Cross", price: "0" }, 
-                        { width: "205", profile: "65", rim: "16", load: "95H", oem: "Toyota Kijang Innova,Honda CR-V", price: "0" }, 
-                        { width: "215", profile: "65", rim: "16", load: "98H", oem: "Nissan X-Trail,Subaru Forester", price: "0" }, 
-                        { width: "205", profile: "45", rim: "17", load: "88W XL", oem: "Mazda2,Honda City Hatchback", price: "0" }, 
-                        { width: "215", profile: "45", rim: "17", load: "91W XL", oem: "Honda Civic,Mazda 3", price: "0" }, 
-                        { width: "205", profile: "50", rim: "17", load: "93V XL", oem: "Honda Civic,Toyota Corolla Altis", price: "0" }, 
-                        { width: "215", profile: "50", rim: "17", load: "95W XL", oem: "Honda Civic,Mazda 3", price: "0" }, 
-                        { width: "225", profile: "50", rim: "17", load: "98V XL", oem: "Honda Civic,Toyota Camry", price: "0" }, 
-                        { width: "205", profile: "55", rim: "17", load: "91V", oem: "Nissan Kicks e-Power,Hyundai Creta", price: "0" }, 
-                        { width: "215", profile: "55", rim: "17", load: "98W XL", oem: "Honda HR-V,Toyota Corolla Altis", price: "0" }, 
-                        { width: "225", profile: "55", rim: "17", load: "101W XL", oem: "Toyota Camry,Nissan Kicks e-Power", price: "0" }, 
-                        { width: "215", profile: "60", rim: "17", load: "96H", oem: "Honda HR-V,Mitsubishi Outlander Sport", price: "0" }, 
-                        { width: "225", profile: "40", rim: "18", load: "92W XL", oem: "Honda Civic,Mazda 3", price: "0" }, 
-                        { width: "225", profile: "45", rim: "18", load: "95W XL", oem: "Toyota Corolla Altis,Honda Civic", price: "0" }, 
-                        { width: "235", profile: "45", rim: "18", load: "98W XL", oem: "Toyota Camry,Mazda 6", price: "0" }, 
-                        { width: "225", profile: "50", rim: "18", load: "95W", oem: "Honda CR-V,Toyota Camry", price: "0" }, 
-                        { width: "235", profile: "50", rim: "18", load: "97W", oem: "Mazda CX-5,Hyundai Santa Fe", price: "0" }, 
-                        { width: "225", profile: "55", rim: "18", load: "98V", oem: "Honda CR-V,Mitsubishi Outlander", price: "0" }, 
-                        { width: "235", profile: "55", rim: "18", load: "100V", oem: "Mazda CX-5,Hyundai Santa Fe", price: "0" }, 
-                        { width: "225", profile: "60", rim: "18", load: "100V", oem: "Honda CR-V,Mitsubishi Outlander", price: "0" }, 
-                        { width: "235", profile: "60", rim: "18", load: "107V XL", oem: "Mazda CX-5,Hyundai Santa Fe", price: "0" }, 
-                        { width: "235", profile: "55", rim: "19", load: "105V XL", oem: "Mazda CX-5,Subaru Forester", price: "0" }
+                        { width: "185", profile: "55", rim: "15", load: "86V XL", oem: "Honda Jazz,Toyota Yaris,Suzuki Swift", price: "1100000" }, 
+                        { width: "185", profile: "65", rim: "15", load: "88H", oem: "Toyota Vios,Honda City,Suzuki Ertiga", price: "925000" }, 
+                        { width: "195", profile: "65", rim: "15", load: "91V", oem: "Toyota Innova,Toyota Corolla Altis", price: "1000000" }, 
+                        { width: "205", profile: "65", rim: "15", load: "94V", oem: "Toyota Camry,Honda Accord", price: "1050000" }, 
+                        { width: "205", profile: "70", rim: "15", load: "96H", oem: "Toyota Kijang Innova,Honda CR-V", price: "900000" }, 
+                        { width: "215", profile: "70", rim: "15", load: "98H", oem: "Nissan X-Trail,Subaru Forester", price: "950000" }, 
+                        { width: "195", profile: "45", rim: "16", load: "84W XL", oem: "Mazda2,Honda City Hatchback", price: "950000" }, 
+                        { width: "195", profile: "50", rim: "16", load: "84V", oem: "Mazda2,Honda City Hatchback", price: "1150000" }, 
+                        { width: "185", profile: "55", rim: "16", load: "83V", oem: "Honda Jazz RS,Toyota Yaris", price: "1100000" }, 
+                        { width: "195", profile: "55", rim: "16", load: "87V", oem: "Honda City,Toyota Yaris", price: "1100000" }, 
+                        { width: "205", profile: "55", rim: "16", load: "91V", oem: "Toyota Corolla Altis,Honda Civic,Mazda 3", price: "1150000" }, 
+                        { width: "195", profile: "60", rim: "16", load: "89H", oem: "Honda Civic,Citroen e-C3", price: "1125000" }, 
+                        { width: "205", profile: "60", rim: "16", load: "92V", oem: "Honda HR-V,Mitsubishi Xpander Cross", price: "1100000" }, 
+                        { width: "205", profile: "65", rim: "16", load: "95H", oem: "Toyota Kijang Innova,Honda CR-V", price: "1050000" }, 
+                        { width: "215", profile: "65", rim: "16", load: "98H", oem: "Nissan X-Trail,Subaru Forester", price: "1200000" }, 
+                        { width: "205", profile: "45", rim: "17", load: "88W XL", oem: "Mazda2,Honda City Hatchback", price: "1050000" }, 
+                         
+                        { width: "205", profile: "50", rim: "17", load: "93V XL", oem: "Honda Civic,Toyota Corolla Altis", price: "1300000" }, 
+                        { width: "215", profile: "50", rim: "17", load: "95W XL", oem: "Honda Civic,Mazda 3", price: "1200000" }, 
+                         
+                        { width: "205", profile: "55", rim: "17", load: "91V", oem: "Nissan Kicks e-Power,Hyundai Creta", price: "1200000" }, 
+                        { width: "215", profile: "55", rim: "17", load: "98W XL", oem: "Honda HR-V,Toyota Corolla Altis", price: "1200000" }, 
+                        { width: "225", profile: "55", rim: "17", load: "101W XL", oem: "Toyota Camry,Nissan Kicks e-Power", price: "1300000" }, 
+                        { width: "215", profile: "60", rim: "17", load: "96H", oem: "Honda HR-V,Mitsubishi Outlander Sport", price: "1200000" }, 
+                         
+                        
                     ]
                 },
                 {
                     name: "Dunlop SP Sport Maxx 050",
                     tag: "Ultra High Performance",
-                    img: "https://images.unsplash.com/photo-1608613193846-c4a7e9c6d3a1?q=80&w=500&auto=format&fit=crop",
+                    img: "spmax050.png",
                     desc: "Dunlop SP Sport Maxx 050 merupakan ban Ultra High Performance (UHP) premium yang dirancang untuk sedan, SUV crossover, dan mobil performa tinggi. Ban ini berfokus pada keseimbangan antara grip maksimal, stabilitas kecepatan tinggi, kenyamanan, dan kemampuan pengereman di jalan basah maupun kering.",
                     specs: [
                         { label: "Kategori", value: "Ultra High Performance (UHP)" },
@@ -312,7 +376,7 @@
                     pros: [
                         "Excellent Wet Grip: 4 alur utama membuang air lebih cepat, mengurangi risiko aquaplaning, pengereman lebih pendek di jalan basah.",
                         "Dry Performance: Blok tapak luar lebih besar, grip menikung sangat baik, steering lebih presisi.",
-                        "High Speed Stability: Konstruksi karkas lebih kaki, stabil di kecepatan tol, minim gejala limbung.",
+                        "High Speed Stability: Konstruksi karkas lebih kaku, stabil di kecepatan tol, minim gejala limbung.",
                         "Comfort: Pola tapak menekan kebisingan, getaran lebih halus dibanding ban UHP generasi lama.",
                         "Long Wear: Compound silica membantu menjaga grip sekaligus meningkatkan umur pakai ban."
                     ],
@@ -322,17 +386,17 @@
                         "Lebih ditujukan untuk performa daripada efisiensi bahan bakar."
                     ],
                     sizes: [
-                        { width: "185", profile: "55", rim: "15", load: "82V", oem: "Honda Jazz RS,Suzuki Swift,Mazda2", price: "0" },
-                        { width: "215", profile: "55", rim: "17", load: "94V", oem: "Honda HR-V,Mazda CX-3,Hyundai Kona,Nissan Kicks e-Power", price: "0" },
-                        { width: "225", profile: "50", rim: "18", load: "95V", oem: "Toyota Corolla Cross Hybrid,Honda Civic,Hyundai Elantra N-Line,Mazda6", price: "0" },
-                        { width: "225", profile: "60", rim: "18", load: "100H", oem: "Honda CR-V,Mitsubishi Outlander,Nissan X-Trail", price: "0" },
-                        { width: "235", profile: "60", rim: "18", load: "103H", oem: "Mazda CX-5,Honda CR-V AWD,Hyundai Santa Fe,Nissan X-Trail", price: "0" }
+                        
+                        { width: "215", profile: "55", rim: "17", load: "94V", oem: "Honda HR-V,Mazda CX-3,Hyundai Kona,Nissan Kicks e-Power", price: "1400000" },
+                        { width: "225", profile: "50", rim: "18", load: "95V", oem: "Toyota Corolla Cross Hybrid,Honda Civic,Hyundai Elantra N-Line,Mazda6", price: "1500000" },
+                        { width: "225", profile: "60", rim: "18", load: "100H", oem: "Honda CR-V,Mitsubishi Outlander,Nissan X-Trail", price: "1300000" },
+                        { width: "235", profile: "60", rim: "18", load: "103H", oem: "Mazda CX-5,Honda CR-V AWD,Hyundai Santa Fe,Nissan X-Trail", price: "1500000" }
                     ]
                 },
                 {
                     name: "Dunlop Direzza DZ102",
                     tag: "Sport Performance",
-                    img: "https://images.unsplash.com/photo-1611821064430-0d40291d0f0b?q=80&w=500&auto=format&fit=crop",
+                    img: "dz102.png",
                     desc: "Dunlop Direzza DZ102 adalah ban Sport Performance yang dirancang untuk pengemudi yang menginginkan handling tajam, grip tinggi di jalan kering maupun basah, serta tetap nyaman digunakan sebagai kendaraan harian (daily use). Ban ini merupakan generasi penerus seri Direzza dengan peningkatan pada daya cengkeram, tingkat kebisingan, dan umur pakai.",
                     specs: [
                         { label: "Kategori", value: "Sport Performance" },
@@ -355,33 +419,33 @@
                         "Umumnya harga lebih tinggi dibanding ban touring biasa."
                     ],
                     sizes: [
-                        { width: "195", profile: "50", rim: "16", load: "84V", oem: "Honda City Hatchback,Toyota Yaris", price: "0" },
-                        { width: "205", profile: "55", rim: "16", load: "91V", oem: "Honda Civic FB,Toyota Corolla Altis,Mazda3,Hyundai Elantra", price: "0" },
-                        { width: "205", profile: "40", rim: "17", load: "84W XL", oem: "Honda Jazz GE/GK modifikasi,Toyota Yaris modifikasi", price: "0" },
-                        { width: "215", profile: "40", rim: "17", load: "87W XL", oem: "Honda Civic FC,Toyota GR86,Subaru BRZ", price: "0" },
-                        { width: "205", profile: "45", rim: "17", load: "84W", oem: "Honda Jazz GE/GK modifikasi,Toyota Yaris modifikasi", price: "0" },
-                        { width: "215", profile: "45", rim: "17", load: "87W", oem: "Honda Civic FC,Toyota GR86,Subaru BRZ", price: "0" },
-                        { width: "225", profile: "45", rim: "17", load: "94W XL", oem: "Honda Civic FE,Subaru WRX,BMW Seri 3", price: "0" },
-                        { width: "245", profile: "45", rim: "17", load: "95W", oem: "BMW Seri 5,Mercedes-Benz C-Class", price: "0" },
-                        { width: "205", profile: "50", rim: "17", load: "93W XL", oem: "Hatchback & Crossover Sporty", price: "0" },
-                        { width: "215", profile: "50", rim: "17", load: "91V", oem: "Sedan & Crossover", price: "0" },
-                        { width: "215", profile: "35", rim: "18", load: "84W XL", oem: "Sedan & Sports Car", price: "0" },
-                        { width: "205", profile: "40", rim: "18", load: "86W XL", oem: "Hatchback & Sports Car", price: "0" },
-                        { width: "215", profile: "40", rim: "18", load: "89W XL", oem: "Sedan Sport", price: "0" },
-                        { width: "225", profile: "40", rim: "18", load: "88W", oem: "Honda Civic RS FE,Hyundai Elantra N Line", price: "0" },
-                        { width: "235", profile: "40", rim: "18", load: "91W", oem: "Toyota GR Corolla,Subaru WRX", price: "0" },
-                        { width: "245", profile: "40", rim: "18", load: "97W XL", oem: "BMW Seri 3 M Sport,Mercedes-Benz C-Class AMG Line", price: "0" },
-                        { width: "225", profile: "45", rim: "18", load: "91W", oem: "Sedan Premium & Sport", price: "0" },
-                        { width: "225", profile: "50", rim: "18", load: "95W", oem: "Toyota Corolla Cross Hybrid,Mazda6", price: "0" },
-                        { width: "235", profile: "50", rim: "18", load: "97V", oem: "Mazda CX-5,Honda CR-V", price: "0" },
-                        { width: "225", profile: "55", rim: "18", load: "98V", oem: "Hyundai Tucson,Honda CR-V", price: "0" },
-                        { width: "235", profile: "60", rim: "18", load: "103H", oem: "Nissan X-Trail,Mazda CX-5,Hyundai Santa Fe", price: "0" }
+                        { width: "195", profile: "50", rim: "16", load: "84V", oem: "Honda City Hatchback,Toyota Yaris", price: "925000" },
+                        { width: "205", profile: "55", rim: "16", load: "91V", oem: "Honda Civic FB,Toyota Corolla Altis,Mazda3,Hyundai Elantra", price: "950000" },
+                        { width: "205", profile: "40", rim: "17", load: "84W XL", oem: "Honda Jazz GE/GK modifikasi,Toyota Yaris modifikasi", price: "850000" },
+                        { width: "215", profile: "40", rim: "17", load: "87W XL", oem: "Honda Civic FC,Toyota GR86,Subaru BRZ", price: "875000" },
+                        { width: "205", profile: "45", rim: "17", load: "84W", oem: "Honda Jazz GE/GK modifikasi,Toyota Yaris modifikasi", price: "1000000" },
+                        { width: "215", profile: "45", rim: "17", load: "87W", oem: "Honda Civic FC,Toyota GR86,Subaru BRZ", price: "1000000" },
+                        { width: "225", profile: "45", rim: "17", load: "94W XL", oem: "Honda Civic FE,Subaru WRX,BMW Seri 3", price: "1100000" },
+                        { width: "245", profile: "45", rim: "17", load: "95W", oem: "BMW Seri 5,Mercedes-Benz C-Class", price: "1150000" },
+                        { width: "205", profile: "50", rim: "17", load: "93W XL", oem: "Hatchback & Crossover Sporty", price: "1100000" },
+                        { width: "215", profile: "50", rim: "17", load: "91V", oem: "Sedan & Crossover", price: "1100000" },
+                        
+                        
+                        { width: "215", profile: "40", rim: "18", load: "89W XL", oem: "Sedan Sport", price: "1100000" },
+                        { width: "225", profile: "40", rim: "18", load: "88W", oem: "Honda Civic RS FE,Hyundai Elantra N Line", price: "1100000" },
+                        { width: "235", profile: "40", rim: "18", load: "91W", oem: "Toyota GR Corolla,Subaru WRX", price: "1200000" },
+                        { width: "245", profile: "40", rim: "18", load: "97W XL", oem: "BMW Seri 3 M Sport,Mercedes-Benz C-Class AMG Line", price: "1250000" },
+                        { width: "225", profile: "45", rim: "18", load: "91W", oem: "Sedan Premium & Sport", price: "1250000" },
+                        { width: "225", profile: "50", rim: "18", load: "95W", oem: "Toyota Corolla Cross Hybrid,Mazda6", price: "1200000" },
+                        { width: "235", profile: "50", rim: "18", load: "97V", oem: "Mazda CX-5,Honda CR-V", price: "1200000" },
+                        
+                        { width: "235", profile: "60", rim: "18", load: "103H", oem: "Nissan X-Trail,Mazda CX-5,Hyundai Santa Fe", price: "1250000" }
                     ]
                 },
                 {
                     name: "Dunlop SP Touring R1",
                     tag: "Touring / Comfort",
-                    img: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=500&auto=format&fit=crop",
+                    img: "r1.png",
                     desc: "Dunlop SP Touring R1 adalah ban Touring yang dirancang khusus untuk memberikan kenyamanan, ketenangan, dan daya tahan ekstra. Cocok untuk sedan, city car, dan MPV yang membutuhkan ban harian yang nyaman, awet, dan efisien.",
                     specs: [
                         { label: "Kategori", value: "Touring / Comfort" },
@@ -402,19 +466,19 @@
                         "Batas grip menikung lebih rendah dibandingkan ban UHP (Ultra High Performance)."
                     ],
                     sizes: [
-                        { width: "175", profile: "65", rim: "14", load: "82H", oem: "Toyota Agya,Daihatsu Ayla,Honda Brio", price: "0" },
-                        { width: "185", profile: "65", rim: "14", load: "86H", oem: "Honda Jazz,Toyota Yaris", price: "0" },
-                        { width: "185", profile: "70", rim: "14", load: "88H", oem: "Toyota Avanza,Daihatsu Xenia", price: "0" },
-                        { width: "195", profile: "65", rim: "15", load: "91H", oem: "Toyota Corolla,Honda Civic,Nissan Tiida", price: "0" },
-                        { width: "205", profile: "65", rim: "15", load: "94H", oem: "Toyota Camry,Honda Accord", price: "0" },
-                        { width: "205", profile: "55", rim: "16", load: "91V", oem: "Honda Civic,Mazda 3,Toyota Corolla Altis", price: "0" },
-                        { width: "205", profile: "60", rim: "16", load: "92H", oem: "Toyota Innova,Honda CR-V", price: "0" }
+                        
+                        { width: "185", profile: "65", rim: "14", load: "86T", oem: "Honda Jazz,Toyota Yaris", price: "650000" },
+                        { width: "175", profile: "60", rim: "15", load: "81S", oem: "Nissan March,Wuling Confero/Confero S,Toyota Yaris", price: "700000" },
+                        { width: "175", profile: "65", rim: "15", load: "84S", oem: "Nissan Note/Micra,Honda Fit/Jazz", price: "650000" },
+                        { width: "195", profile: "60", rim: "15", load: "88T", oem: "Toyota Corolla Altis/Crown,Mitsubishi Galant/FTO/Lancer SEi,Nissan Sentra Genesis/Sunny Neo", price: "725000" },
+                        { width: "185", profile: "60", rim: "16", load: "86T", oem: "Honda e,Mazda 2", price: "750000" },
+                        { width: "205", profile: "60", rim: "16", load: "92T", oem: "Toyota Voxy", price: "850000" }
                     ]
                 },
                 {
                     name: "Dunlop Grandtrek AT5",
                     tag: "SUV & 4x4 All-Terrain",
-                    img: "https://images.unsplash.com/photo-1597007069848-4a4ec0516fbe?q=80&w=500&auto=format&fit=crop",
+                    img: "at5.png",
                     desc: "Dunlop Grandtrek AT5 adalah ban All-Terrain (A/T) yang dirancang khusus untuk SUV dan pick-up 4x4. Ban ini menggabungkan ketangguhan off-road dengan kenyamanan berkendara di jalan raya, memiliki daya tahan ekstra terhadap benda tajam serta umur pakai yang lebih panjang.",
                     specs: [
                         { label: "Kategori", value: "All-Terrain (A/T)" },
@@ -436,36 +500,36 @@
                         "Tidak optimal untuk medan off-road ekstrem seperti ban Mud Terrain (M/T)."
                     ],
                     sizes: [
-                        { width: "205", profile: "70", rim: "15", load: "96T WLT", oem: "Honda CR-V,Subaru Forester", price: "0" },
-                        { width: "235", profile: "70", rim: "15", load: "107S XL WLT", oem: "Suzuki Grand Vitara,Nissan X-Trail", price: "0" },
-                        { width: "265", profile: "70", rim: "15", load: "112T OWL", oem: "Toyota Hilux,Nissan Navara", price: "0" },
-                        { width: "30X9.50", profile: "-", rim: "15", load: "104S WLT", oem: "Jeep Wrangler,Suzuki Jimny", price: "0" },
-                        { width: "31X10.50", profile: "-", rim: "15", load: "109S WLT", oem: "Jeep Wrangler", price: "0" },
-                        { width: "235", profile: "60", rim: "16", load: "100H BLT", oem: "SUV & Crossover", price: "0" },
-                        { width: "215", profile: "70", rim: "16", load: "100T BLT", oem: "Nissan X-Trail,Subaru Forester", price: "0" },
-                        { width: "225", profile: "70", rim: "16", load: "103T WLT", oem: "Honda CR-V,Nissan X-Trail", price: "0" },
-                        { width: "245", profile: "70", rim: "16", load: "111T WLT", oem: "Ford Ranger,Mitsubishi Triton", price: "0" },
-                        { width: "255", profile: "70", rim: "16", load: "111T WLT", oem: "Ford Ranger,Toyota Hilux", price: "0" },
-                        { width: "265", profile: "70", rim: "16", load: "112T WLT", oem: "Toyota Hilux,Mitsubishi Triton,Nissan Navara", price: "0" },
-                        { width: "225", profile: "75", rim: "16", load: "108S WLT", oem: "Toyota Hilux,Ford Ranger", price: "0" },
-                        { width: "245", profile: "75", rim: "16", load: "111S WLT", oem: "Ford Ranger,Mitsubishi Triton", price: "0" },
-                        { width: "265", profile: "75", rim: "16", load: "116S WLT", oem: "Toyota Land Cruiser,Mitsubishi Pajero", price: "0" },
-                        { width: "285", profile: "75", rim: "16", load: "122/119Q OWL", oem: "Toyota Land Cruiser,Land Rover Defender", price: "0" },
-                        { width: "235", profile: "60", rim: "17", load: "102H BLT", oem: "Toyota Highlander,SUV Crossover", price: "0" },
-                        { width: "225", profile: "65", rim: "17", load: "102H BLT", oem: "Honda CR-V,Mazda CX-5", price: "0" },
-                        { width: "235", profile: "65", rim: "17", load: "108H BLT", oem: "Toyota Fortuner,Mitsubishi Pajero Sport", price: "0" },
-                        { width: "265", profile: "65", rim: "17", load: "112S BLT", oem: "Toyota Fortuner,Mitsubishi Pajero Sport,Nissan Terra", price: "0" },
-                        { width: "285", profile: "65", rim: "17", load: "116T BLT", oem: "Toyota Land Cruiser,Nissan Patrol", price: "0" },
-                        { width: "265", profile: "70", rim: "17", load: "115S WLT", oem: "Toyota Fortuner 4x4,Ford Everest", price: "0" },
-                        { width: "235", profile: "55", rim: "18", load: "100H BLT", oem: "Luxury SUV / Crossover", price: "0" },
-                        { width: "265", profile: "60", rim: "18", load: "110H BLT", oem: "Toyota Fortuner,Ford Everest", price: "0" },
-                        { width: "285", profile: "60", rim: "18", load: "120T XL", oem: "Toyota Land Cruiser,Range Rover Sport", price: "0" }
+                        { width: "205", profile: "70", rim: "15", load: "96T WLT", oem: "Honda CR-V,Subaru Forester", price: "1000000" },
+                        
+                        
+                        { width: "30X9.50", profile: "-", rim: "15", load: "104S WLT", oem: "Jeep Wrangler,Suzuki Jimny", price: "1600000" },
+                        { width: "31X10.50", profile: "-", rim: "15", load: "109S WLT", oem: "Jeep Wrangler", price: "1700000" },
+                        { width: "235", profile: "60", rim: "16", load: "100H BLT", oem: "SUV & Crossover", price: "1300000" },
+                        { width: "215", profile: "70", rim: "16", load: "100T BLT", oem: "Nissan X-Trail,Subaru Forester", price: "1250000" },
+                        { width: "225", profile: "70", rim: "16", load: "103T WLT", oem: "Honda CR-V,Nissan X-Trail", price: "1350000" },
+                        
+                        
+                        { width: "265", profile: "70", rim: "16", load: "112T WLT", oem: "Toyota Hilux,Mitsubishi Triton,Nissan Navara", price: "1600000" },
+                        
+                        
+                        { width: "265", profile: "75", rim: "16", load: "116S WLT", oem: "Toyota Land Cruiser,Mitsubishi Pajero", price: "1700000" },
+                        
+                        { width: "235", profile: "60", rim: "17", load: "102H BLT", oem: "Toyota Highlander,SUV Crossover", price: "1350000" },
+                        { width: "225", profile: "65", rim: "17", load: "102H BLT", oem: "Honda CR-V,Mazda CX-5", price: "1500000" },
+                        
+                        { width: "265", profile: "65", rim: "17", load: "112S BLT", oem: "Toyota Fortuner,Mitsubishi Pajero Sport,Nissan Terra", price: "1800000" },
+                        
+                        
+                        { width: "235", profile: "55", rim: "18", load: "100H BLT", oem: "Luxury SUV / Crossover", price: "1450000" },
+                        { width: "265", profile: "60", rim: "18", load: "110H BLT", oem: "Toyota Fortuner,Ford Everest", price: "2000000" }
+                        
                     ]
                 },
                 {
                     name: "Dunlop Grandtrek ST20",
                     tag: "Highway Terrain (H/T)",
-                    img: "https://images.unsplash.com/photo-1608613193846-c4a7e9c6d3a1?q=80&w=500&auto=format&fit=crop",
+                    img: "st20new.png",
                     desc: "Dunlop Grandtrek ST20 adalah ban Highway Terrain (H/T) yang dirancang khusus untuk SUV dan crossover dengan fokus utama pada kenyamanan, stabilitas, dan performa di jalan raya. Ban ini sangat cocok untuk penggunaan harian, perjalanan jarak jauh, serta kondisi jalan beraspal dengan sesekali melewati medan ringan (soft terrain).",
                     specs: [
                         { label: "Kategori", value: "Highway Terrain (H/T)" },
@@ -488,15 +552,15 @@
                     ],
                     sizes: [
                         { width: "215", profile: "65", rim: "16", load: "98H", oem: "Toyota Rush,Daihatsu Terios,Honda CR-V,Nissan X-Trail,Hyundai Tucson", price: "1100000" },
-                        { width: "215", profile: "65", rim: "16", load: "98S", oem: "Toyota Rush,Daihatsu Terios", price: "0" },
-                        { width: "225", profile: "60", rim: "17", load: "99H", oem: "Honda CR-V,Nissan X-Trail,Mitsubishi Outlander Sport", price: "0" },
+                        
+                        
                         { width: "235", profile: "60", rim: "16", load: "100H", oem: "Chevrolet Captiva,Honda CR-V,Nissan X-Trail,Suzuki Grand Vitara", price: "1300000" }
                     ]
                 },
                 {
                     name: "Dunlop Grandtrek AT25",
                     tag: "All Terrain (A/T) OEM",
-                    img: "https://images.unsplash.com/photo-1597007069848-4a4ec0516fbe?q=80&w=500&auto=format&fit=crop",
+                    img: "at25new.png",
                     desc: "Dunlop Grandtrek AT25 adalah ban All Terrain (A/T) yang dirancang sebagai ban bawaan (OEM) untuk SUV dan double cabin modern. Ban ini menawarkan keseimbangan antara kenyamanan di jalan raya, stabilitas saat kecepatan tinggi, serta kemampuan melintasi medan off-road ringan hingga sedang.",
                     specs: [
                         { label: "Kategori", value: "All Terrain (A/T)" },
@@ -518,15 +582,15 @@
                         "Pilihan ukuran di Indonesia terbatas."
                     ],
                     sizes: [
-                        { width: "265", profile: "65", rim: "17", load: "112S", oem: "Toyota Fortuner,Toyota Hilux,Isuzu MU-X,Ford Ranger", price: "1900000" },
-                        { width: "265", profile: "60", rim: "18", load: "110H", oem: "Toyota Fortuner GR Sport,Toyota Hilux GR Sport,Ford Everest", price: "2100000" },
-                        { width: "265", profile: "60", rim: "18", load: "110H (PT)", oem: "OEM Toyota Fortuner,OEM Toyota Hilux", price: "2100000" }
+                        { width: "265", profile: "65", rim: "17", load: "112S", oem: "Toyota Fortuner,Toyota Hilux,Isuzu MU-X,Ford Ranger", price: "1750000" },
+                        { width: "265", profile: "60", rim: "18", load: "110H", oem: "Toyota Fortuner GR Sport,Toyota Hilux GR Sport,Ford Everest", price: "1900000" },
+                        { width: "265", profile: "60", rim: "18", load: "110H (PT)", oem: "OEM Toyota Fortuner,OEM Toyota Hilux", price: "2000000" }
                     ]
                 },
                 {
                     name: "Dunlop SP LT 5",
                     tag: "Commercial Light Truck",
-                    img: "https://images.unsplash.com/photo-1602551258130-30b89c4d80d6?q=80&w=500&auto=format&fit=crop",
+                    img: "lt-5.png",
                     desc: "Dunlop SP LT 5 merupakan ban komersial ringan yang dirancang khusus untuk kendaraan niaga seperti pickup, van, dan mobil box. Ban ini mengutamakan ketahanan, daya angkut, serta umur pakai yang panjang sehingga cocok digunakan untuk kebutuhan operasional harian maupun bisnis.",
                     specs: [
                         { label: "Kategori", value: "Commercial Light Truck" },
@@ -547,17 +611,17 @@
                         "Dirancang khusus untuk kendaraan niaga, sehingga bukan pilihan utama untuk sedan atau SUV."
                     ],
                     sizes: [
-                        { width: "165", profile: "-", rim: "13", load: "8PR", oem: "Suzuki Carry Pick Up,Daihatsu Hijet", price: "0", customName: "165 R13 C" },
-                        { width: "175", profile: "-", rim: "13", load: "8PR", oem: "Suzuki Carry Pick Up,Mitsubishi Colt T120SS", price: "0", customName: "175 R13 C" },
-                        { width: "185", profile: "-", rim: "14", load: "8PR", oem: "Daihatsu Gran Max Pick Up,Daihatsu Gran Max Blind Van", price: "0", customName: "185 R14 C" },
-                        { width: "195", profile: "-", rim: "14", load: "8PR", oem: "Toyota HiAce Lama,Mobil Box Ringan", price: "0", customName: "195 R14 C" },
-                        { width: "195", profile: "-", rim: "15", load: "106/104R 8PR", oem: "Toyota HiAce,Isuzu Traviz,Mitsubishi L300", price: "0", customName: "195 R15 C" }
+                        { width: "165", profile: "-", rim: "13", load: "8PR", oem: "Suzuki Carry Pick Up,Daihatsu Hijet", price: "700000", customName: "165 R13 C" },
+                        { width: "175", profile: "-", rim: "13", load: "8PR", oem: "Suzuki Carry Pick Up,Mitsubishi Colt T120SS", price: "725000", customName: "175 R13 C" },
+                        { width: "185", profile: "-", rim: "14", load: "8PR", oem: "Daihatsu Gran Max Pick Up,Daihatsu Gran Max Blind Van", price: "850000", customName: "185 R14 C" },
+                        { width: "195", profile: "-", rim: "14", load: "8PR", oem: "Toyota HiAce Lama,Mobil Box Ringan", price: "1000000", customName: "195 R14 C" }
+                        
                     ]
                 },
                 {
                     name: "Dunlop Grandtrek ST30",
                     tag: "Highway Terrain (H/T)",
-                    img: "https://images.unsplash.com/photo-1608613193846-c4a7e9c6d3a1?q=80&w=500&auto=format&fit=crop",
+                    img: "st30new.png",
                     desc: "Dunlop Grandtrek ST30 merupakan ban Highway Terrain (HT) yang dirancang khusus untuk kendaraan SUV dan Crossover. Ban ini menawarkan keseimbangan antara kenyamanan, daya cengkeram, dan stabilitas sehingga cocok digunakan untuk mobilitas harian maupun perjalanan jarak jauh di jalan beraspal.",
                     specs: [
                         { label: "Kategori", value: "Highway Terrain (H/T)" },
@@ -578,10 +642,10 @@
                         "Tidak memiliki kemampuan lumpur dan bebatuan seperti ban All Terrain (A/T) atau Mud Terrain (M/T)."
                     ],
                     sizes: [
-                        { width: "225", profile: "65", rim: "17", load: "102H", oem: "Honda CR-V,Nissan X-Trail,Nissan X-Trail Hybrid,Mitsubishi Outlander", price: "0" },
-                        { width: "225", profile: "65", rim: "17", load: "102T", oem: "Honda CR-V,Nissan X-Trail,Mitsubishi Outlander", price: "0" },
-                        { width: "225", profile: "60", rim: "18", load: "100H", oem: "Honda CR-V,Mazda CX-5,Hyundai Tucson", price: "0" },
-                        { width: "225", profile: "55", rim: "19", load: "99H", oem: "Honda CR-V RS,Hyundai Santa Fe,SUV Premium", price: "0" }
+                        { width: "225", profile: "65", rim: "17", load: "102H", oem: "Honda CR-V,Nissan X-Trail,Nissan X-Trail Hybrid,Mitsubishi Outlander", price: "1050000" },
+                        
+                        { width: "225", profile: "60", rim: "18", load: "100H", oem: "Honda CR-V,Mazda CX-5,Hyundai Tucson", price: "1400000" },
+                        { width: "225", profile: "55", rim: "19", load: "99H", oem: "Honda CR-V RS,Hyundai Santa Fe,SUV Premium", price: "2500000" }
                     ]
                 }
             ],
@@ -589,7 +653,7 @@
                 {
                     name: "Falken Sincera SN832i",
                     tag: "Standard / Eco Tyre",
-                    img: "https://images.unsplash.com/photo-1602551258130-30b89c4d80d6?q=80&w=500&auto=format&fit=crop",
+                    img: "falken-sn.png",
                     desc: "Falken SINCERA SN832i merupakan ban Standard / Eco Tyre yang dirancang khusus untuk city car, hatchback, sedan, dan MPV kecil. Ban ini mengutamakan kenyamanan, efisiensi bahan bakar, serta daya tahan sehingga sangat cocok digunakan sebagai ban harian di perkotaan maupun perjalanan antar kota.",
                     specs: [
                         { label: "Kategori", value: "Standard / Eco Tyre" },
@@ -622,7 +686,7 @@
                 {
                     name: "Falken Ziex ZE310R ECORUN",
                     tag: "Comfort Touring",
-                    img: "https://images.unsplash.com/photo-1611821064430-0d40291d0f0b?q=80&w=500&auto=format&fit=crop",
+                    img: "falken-ze.png",
                     desc: "Falken ZIEX ZE310R ECORUN merupakan ban comfort touring yang dirancang untuk memberikan keseimbangan antara kenyamanan, kesenyapan, daya cengkeram di jalan basah, umur pakai yang panjang, dan efisiensi bahan bakar. Teknologi yang awalnya dikembangkan untuk memenuhi kebutuhan pabrikan mobil Eropa kemudian dioptimalkan untuk kondisi jalan di Asia.",
                     specs: [
                         { label: "Kategori", value: "Comfort Touring" },
@@ -646,7 +710,7 @@
                     sizes: [
                         { width: "185", profile: "65", rim: "15", load: "88H", oem: "Toyota Vios,Honda City,Suzuki Ertiga", price: "850000" },
                         { width: "205", profile: "55", rim: "16", load: "91V", oem: "Honda Civic,Toyota Corolla Altis,Mazda3", price: "1000000" },
-                        { width: "215", profile: "55", rim: "17", load: "94W", oem: "Honda HR-V,Hyundai Creta", price: "1100000" }
+                        { width: "215", profile: "55", rim: "17", load: "94W", oem: "Honda HR-V,Hyundai Creta", price: "1050000" }
                     ]
                 }
             ],
@@ -654,7 +718,7 @@
                 {
                     name: "Bridgestone Ecopia EP150",
                     tag: "Eco Touring",
-                    img: "https://images.unsplash.com/photo-1602551258130-30b89c4d80d6?q=80&w=500&auto=format&fit=crop",
+                    img: "ep150.png",
                     desc: "Bridgestone Ecopia EP150 adalah ban Eco Touring yang dirancang untuk penggunaan harian dengan fokus pada efisiensi bahan bakar, kenyamanan, keamanan, dan umur pakai yang panjang. Teknologi Low Rolling Resistance membantu mengurangi hambatan gulir sehingga konsumsi bahan bakar menjadi lebih hemat tanpa mengurangi performa berkendara.",
                     specs: [
                         { label: "Kategori", value: "Eco Touring" },
@@ -676,22 +740,18 @@
                         "Tidak dirancang untuk off-road."
                     ],
                     sizes: [
-                        { width: "155", profile: "80", rim: "12", load: "77T", oem: "-", price: "0" },
-                        { width: "165", profile: "70", rim: "13", load: "79T", oem: "Toyota Agya,Daihatsu Ayla", price: "0" },
-                        { width: "165", profile: "80", rim: "13", load: "83T", oem: "-", price: "0" },
-                        { width: "175", profile: "70", rim: "13", load: "82T", oem: "-", price: "0" },
+                        
                         { width: "175", profile: "65", rim: "14", load: "82T", oem: "Honda Brio,Toyota Agya", price: "725000" },
-                        { width: "185", profile: "60", rim: "15", load: "84H", oem: "-", price: "0" },
-                        { width: "185", profile: "65", rim: "15", load: "88T", oem: "Toyota Avanza,Daihatsu Xenia,Suzuki Ertiga", price: "0" },
-                        { width: "195", profile: "65", rim: "15", load: "91H", oem: "Toyota Corolla Altis", price: "0" },
-                        { width: "205", profile: "55", rim: "16", load: "91V", oem: "-", price: "0" },
-                        { width: "205", profile: "55", rim: "17", load: "91V", oem: "Mitsubishi New Xpander,Xpander Cross", price: "0" }
+                        
+                        { width: "185", profile: "70", rim: "14", load: "88T", oem: "Toyota Avanza,Daihatsu Xenia", price: "750000" }
+                        
+                        
                     ]
                 },
                 {
                     name: "Bridgestone Ecopia EP300 ENLITEN",
                     tag: "Eco Touring Premium",
-                    img: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=500&auto=format&fit=crop",
+                    img: "ep300.png",
                     desc: "Bridgestone Ecopia EP300 ENLITEN merupakan penerus Ecopia EP150 yang menggunakan teknologi ENLITEN. Ban ini menawarkan efisiensi bahan bakar lebih baik, grip di jalan basah yang meningkat, kenyamanan lebih tinggi, serta bobot ban yang lebih ringan, sehingga cocok untuk mobil modern, hybrid, maupun kendaraan yang mengutamakan efisiensi.",
                     specs: [
                         { label: "Kategori", value: "Eco Touring Premium" },
@@ -713,30 +773,71 @@
                         "Tetap bukan ban dengan karakter sporty."
                     ],
                     sizes: [
-                        { width: "185", profile: "55", rim: "16", load: "83H", oem: "Honda City Hatchback", price: "0" },
-                        { width: "195", profile: "60", rim: "16", load: "89H", oem: "Toyota Corolla Cross", price: "0" },
-                        { width: "205", profile: "55", rim: "16", load: "91V", oem: "Honda Civic", price: "0" },
-                        { width: "205", profile: "60", rim: "16", load: "92H", oem: "-", price: "0" },
-                        { width: "215", profile: "55", rim: "17", load: "94W", oem: "Honda HR-V", price: "0" },
-                        { width: "215", profile: "60", rim: "17", load: "96H", oem: "Toyota Innova Zenix Hybrid", price: "0" },
-                        { width: "225", profile: "50", rim: "18", load: "95W", oem: "Hyundai Tucson Hybrid", price: "0" }
+                        { width: "185", profile: "65", rim: "15", load: "83H", oem: "Toyota Veloz,Honda Freed,Suzuki Ertiga", price: "900000" },
+                        { width: "195", profile: "60", rim: "16", load: "89H", oem: "Toyota Corolla Cross", price: "1150000" },
+                        { width: "205", profile: "55", rim: "16", load: "91V", oem: "Honda Civic", price: "1250000" },
+                        
+                        
+                        { width: "205", profile: "65", rim: "16", load: "96H", oem: "Toyota Innova Reborn", price: "1100000" },
+                        { width: "205", profile: "55", rim: "17", load: "95W", oem: "Toyota Corolla Altis,Nissan Kicks e-Power", price: "1350000" }
                     ]
                 }
             ],
-            "michelin": [
-                { name: "Michelin Energy XM2+", tag: "Eco", img: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=500&auto=format&fit=crop", desc: "Ban eco ironflex.", specs: [{ label: "Kategori", value: "Eco" }], pros: ["Kuat"], cons: ["Standar"], sizes: [{ width: "175", profile: "65", rim: "14", load: "82T", oem: "Toyota Agya,Honda Brio,Daihatsu Ayla", price: "850000" }] }
+                        "michelin": [
+                {
+                    name: "Michelin Primacy 4 (PCY4)",
+                    tag: "High-Performance",
+                    img: "michelinpcy4.png",
+                    desc: "Ban touring premium untuk penggunaan harian, mengutamakan kenyamanan, keselamatan, dan umur pakai. Michelin memang memposisikannya untuk perjalanan harian dan perjalanan keluarga.",
+                    specs: [
+                        { label: "Jenis", value: "Touring / Passenger Car" },
+                        { label: "Konstruksi", value: "Radial, Tubeless" },
+                        { label: "Speed Rating", value: "H / V / W" },
+                        { label: "Fokus Utama", value: "Wet Grip, Comfort, Durability, Long Mileage" },
+                        { label: "Teknologi", value: "MICHELIN EverGrip" }
+                    ],
+                    pros: [
+                        "Nyaman dan cocok untuk perjalanan harian.",
+                        "Pengereman di jalan basah sangat baik, salah satu fokus utama Primacy 4.",
+                        "Performa basah dibuat tetap konsisten saat ban aus, berkat desain alur dan teknologi EverGrip. Michelin menyebut ruang evakuasi air meningkat 22% saat tapak aus.",
+                        "Umur pakai panjang — Michelin mengklaim Primacy 4 memiliki jarak tempuh 20% lebih panjang dibanding generasi sebelumnya Primacy 3.",
+                        "Rolling resistance juga dibuat lebih rendah dibanding generasi sebelumnya, sehingga cukup efisien."
+                    ],
+                    cons: [
+                        "Harga relatif mahal dibanding ban touring kelas menengah.",
+                        "Karena fokusnya comfort + longevity, ini bukan pilihan utama untuk yang mengejar handling/sporty feel.",
+                        "Untuk mobil yang sering dipakai agresif atau mengejar grip kering maksimal, ada lini Michelin lain yang lebih cocok.",
+                        "Benefit umur panjang paling terasa kalau tekanan angin, spooring, balancing, dan rotasi ban dijaga dengan baik."
+                    ],
+                    sizes: [
+                        { width: "215", profile: "55", rim: "17", load: "94V", oem: "Honda HR-V,Toyota Innova/Venturer/Camry,Nissan Juke,Chevrolet Cruze/MG ZS", price: "2000000" },
+                    { width: "235", profile: "50", rim: "18", load: "104XL", oem: "Toyota Harrier / RAV4,Lexus NX / RX,Kia Sportage EX / Hyundai Tucson,Wuling Almaz", price: "200F0000" }
+                ]
+                }
             ]
         };
 
         let currentBrandName = "";
+        let currentSeriesFilter = 'all'; // Tambahan variabel untuk filter
 
         function showBrand(brandName) {
             currentBrandName = brandName;
+            currentSeriesFilter = 'all'; // Reset filter setiap pindah merk
             document.getElementById('view-brands').classList.remove('active');
             document.getElementById('view-details').classList.remove('active');
             document.getElementById('view-models').classList.add('active');
             document.getElementById('page-title').innerHTML = `Tipe Ban <span class="yellow-accent">${brandName.charAt(0).toUpperCase() + brandName.slice(1)}</span>`;
             document.getElementById('page-subtitle').textContent = `Pilih salah satu tipe ban ${brandName} di bawah ini untuk melihat detail spesifikasi dan harga.`;
+            
+            // Tampilkan filter HANYA untuk Dunlop
+            const filterContainer = document.getElementById('series-filter-container');
+            if (brandName === 'dunlop') {
+                filterContainer.style.display = 'flex';
+            } else {
+                filterContainer.style.display = 'none';
+            }
+
+            updateFilterButtons();
             renderModels(brandName);
         }
 
@@ -762,11 +863,38 @@
             document.getElementById('no-result').classList.add('hidden');
             document.getElementById('model-list-container').style.display = 'grid';
             document.getElementById('search-bar-container').style.display = 'block';
+
+            // Tampilkan filter HANYA untuk Dunlop
+            const filterContainer = document.getElementById('series-filter-container');
+            if (currentBrandName === 'dunlop') {
+                filterContainer.style.display = 'flex';
+            } else {
+                filterContainer.style.display = 'none';
+            }
         }
 
         function formatRupiah(angka) {
             if (angka === "0" || angka === "-" || angka === "") return "Rp -";
             return 'Rp ' + parseInt(angka).toLocaleString('id-ID');
+        }
+
+        // Tambahan fungsi Filter Seri
+        function filterSeries(seriesName) {
+            currentSeriesFilter = seriesName;
+            updateFilterButtons();
+            renderModels(currentBrandName);
+        }
+
+        function updateFilterButtons() {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-yellow-400', 'text-black', 'border-yellow-400');
+                btn.classList.add('bg-gray-800', 'text-white', 'border-gray-700');
+            });
+            const activeBtn = document.getElementById('btn-' + currentSeriesFilter);
+            if (activeBtn) {
+                activeBtn.classList.add('active', 'bg-yellow-400', 'text-black', 'border-yellow-400');
+                activeBtn.classList.remove('bg-gray-800', 'text-white', 'border-gray-700');
+            }
         }
 
         function renderModels(brandName) {
@@ -777,9 +905,22 @@
             document.getElementById('tire-list-container').innerHTML = '';
 
             let models = tireData[brandName] || [];
-            models.forEach((model, index) => {
+            
+            // Logika Filter Series
+            if (currentSeriesFilter !== 'all') {
+                models = models.filter(tire => tire.name.toLowerCase().includes(currentSeriesFilter));
+            }
+
+            if (models.length === 0) {
+                container.innerHTML = '<p class="text-center text-gray-400 col-span-full py-8">Tidak ada ban untuk seri ini.</p>';
+                return;
+            }
+
+            // Ambil originalIndex agar tombol detail tetap mengambil data yang benar
+            models.forEach(model => {
+                const originalIndex = tireData[brandName].findIndex(t => t.name === model.name);
                 const card = `
-                    <div class="model-card" onclick="showModel('${brandName}', ${index})">
+                    <div class="model-card" onclick="showModel('${brandName}', ${originalIndex})">
                         <span class="block text-xs font-bold text-yellow-400 uppercase tracking-widest mb-2">${model.tag || 'Tire'}</span>
                         <div class="model-card-img">
                             <img src="${model.img || 'https://images.unsplash.com/photo-1602551258130-30b89c4d80d6?q=80&w=500&auto=format&fit=crop'}" alt="${model.name}">
@@ -842,9 +983,9 @@
             container.innerHTML = `
                 <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden shadow-2xl mb-8">
                     <div class="grid grid-cols-1 md:grid-cols-2">
-                        <div class="bg-gray-800 p-8 flex items-center justify-center">
-                            <img src="${model.img || 'https://images.unsplash.com/photo-1602551258130-30b89c4d80d6?q=80&w=500&auto=format&fit=crop'}" alt="${model.name}" class="w-auto max-h-64 object-contain rounded-lg transition duration-300 hover:scale-105">
-                        </div>
+                        <div class="flex items-center justify-center p-8 rounded-3xl bg-[radial-gradient(circle_at_center,_#374151_0%,_#1f2937_100%)]">
+    <img src="${model.img || 'https://images.unsplash.com/photo-1602551258130-30b89c4d80d6?q=80&w=500&auto=format&fit=crop'}" alt="${model.name}" class="w-auto max-h-72 object-contain transition duration-500 hover:scale-110 drop-shadow-[0_20px_30px_rgba(0,0,0,0.8)]">
+</div>
                         <div class="p-8 flex flex-col justify-center">
                             <h2 class="text-2xl md:text-3xl font-bold mb-2 text-white uppercase">${model.name}</h2>
                             <p class="text-yellow-400 text-sm font-bold mb-4 uppercase">Dunlop Authorized Dealer</p>
@@ -952,6 +1093,7 @@
             const p = document.getElementById('profile').value;
             const r = document.getElementById('rim').value;
             document.getElementById('model-list-container').style.display = 'none';
+            document.getElementById('series-filter-container').style.display = 'none'; // Sembunyikan filter saat search
             const flatTires = getFlatTires(currentBrandName);
             const filtered = flatTires.filter(tire => (!w || tire.width === w) && (!p || tire.profile === p) && (!r || tire.rim === r));
             renderSearchResults(filtered);
@@ -960,6 +1102,7 @@
         function searchTiresOEM() {
             const model = document.getElementById('car-model').value;
             document.getElementById('model-list-container').style.display = 'none';
+            document.getElementById('series-filter-container').style.display = 'none'; // Sembunyikan filter saat search
             const flatTires = getFlatTires(currentBrandName);
             const filtered = flatTires.filter(tire => !model || tire.oem.includes(model));
             renderSearchResults(filtered);
